@@ -1,0 +1,9 @@
+type Query {
+  _empty_billing: String
+}
+
+schema {
+  query: Query
+  # uncomment this line if this service have some mutations
+  mutation: Mutation
+}

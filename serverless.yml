@@ -1,0 +1,59 @@
+service: bizzi-food-ordering
+
+frameworkVersion: '^3.22.0'
+
+custom:
+  #   webpack:
+  #     webpackConfig: 'webpack.config.ts'
+  #     includeModules: true
+  profiles:
+    dev: dev_chinh_chu
+    prod: prod_chinh_chu
+
+package:
+  individually: true
+  excludeDevDependencies: true
+
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  architecture: arm64
+  logRetentionInDays: 14
+  deploymentMethod: direct
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'ap-southeast-1'}
+  # deploymentBucket:
+  #   name: bizzi-serverless-deployment-${self:provider.region}
+  #   versioning: true
+  environment:
+    APP_DOMAIN: ${param:domain, 'bizzi-food-ordering'}
+    SERVICE: ${self:service}
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    S3_BUCKET: bizzi-food-ordering-${self:provider.stage}
+  profile: ${self:custom.profiles.${self:provider.stage}}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - 's3:GetObject'
+            - 's3:GetObjectAcl'
+            - 's3:GetBucketLocation'
+            - 's3:GetBucketAcl'
+            - 's3:ListAllMyBuckets'
+            - 's3:ListBucket'
+            - 's3:DeleteObject'
+            - 's3:PutObject'
+            - 's3:PutObjectAcl'
+            - 's3:PutBucketPolicy'
+          Resource:
+            - '*'
+
+functions:
+  - ${file(./functions/graphql/config.yml)}

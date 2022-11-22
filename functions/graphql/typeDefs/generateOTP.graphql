@@ -1,0 +1,7 @@
+type GenerateOTPOuput {
+  otp: String!
+}
+
+type Mutation {
+  generateOTP(email: String!): GenerateOTPOuput!
+}

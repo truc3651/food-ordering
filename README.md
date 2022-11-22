@@ -1,0 +1,4 @@
+- sls deploy --stage production --region eu-central-1
+- sls deploy -f yourFunctionName
+- sls deploy --force
+- sls deploy --update-config

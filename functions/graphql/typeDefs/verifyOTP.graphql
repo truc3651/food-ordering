@@ -1,0 +1,7 @@
+type verifyOTPOuput {
+  accessToken: String!
+}
+
+type Mutation {
+  verifyOTP(email: String!, otp: String!): verifyOTPOuput!
+}

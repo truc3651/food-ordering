@@ -1,0 +1,8 @@
+graphql:
+  memorySize: 512
+  timeout: 10
+  handler: ./functions/graphql/handler.graphql
+  events:
+    - httpApi:
+        path: /graphql
+        method: post

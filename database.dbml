@@ -1,0 +1,102 @@
+Project FoodOrdering {
+  database_type: 'PostgreSQL'
+}
+
+Table users {
+  note "need to sync with Firebase (userId, avatar)"
+  user_id int [pk, increment]
+  email varchar(255) [unique, not null]
+  password_hashed varchar(255) [note: "login via GG, no need password"]
+  access_secret_key varchar(255) [note: "generate access_token based on this. When you forget your password, you need to delete me, sir!"]
+  forgot_password_token varchar(255)
+  displayed_name varchar(255) [not null]
+  changed_displayed_name_manually boolean [note: "once user change me manually, the next time, they login via gg, pls do not replace displayed_name"]
+  momo_phone_number char(10) [unique]
+  avatar varchar(255)
+  changed_avatar_manually boolean [note: "once user change me manually, the next time, they login via gg, pls do not replace avatar"]
+  sex boolean [default: true, note: "true: Male, false: Female. Non-mofied allowing"]
+  active boolean [default: true, note: "admin ban user, or revoke request"]
+  verified_email boolean
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+// Table threads {
+//     note "available for public room (actually there's only public room and everyone can chat and place order)"
+//     thread_id int [pk, increment]
+//     room_id int [ref: > rooms.room_id]
+//     host_id int [ref: > users.user_id]
+//     created_at timestamp [default: `now()`]
+//     updated_at timestamp [default: `now()`]
+// }
+
+Table rooms {
+    note "host can add/kick user"
+    room_id int [pk, increment]
+    firebase_room_id char(10)
+    host_id int [ref: > users.user_id]
+    created_at timestamp [default: `now()`]
+    updated_at timestamp [default: `now()`]
+}
+
+Table users_rooms {
+    note "room can have many users, and 1 user can be in many rooms"
+    user_room_id int [pk, increment]
+    user_id int [ref: > users.user_id]
+    room_id int [ref: > rooms.room_id]
+    created_at timestamp [default: `now()`]
+}
+
+Table configs {
+    config_id int [pk, increment]
+    stage stages
+    room_duration int [note: "milliseconds"]
+    room_capacity int
+}
+
+Enum stages {
+  dev
+  prod
+}
+
+Table orders {
+    order_id int [pk, increment]
+    store_name varchar(255)
+    store_address varchar(255)
+    total_price float
+    discount float [note: "[0, 100)"]
+    room_id int [ref: > rooms.room_id]
+    created_by int [ref: > users.user_id]
+    created_at timestamp [default: `now()`]
+    updated_at timestamp [default: `now()`]
+}
+
+Table food {
+    food_id int [pk, increment]
+    order_id int [ref: > orders.order_id]
+    name varchar(255) [not null]
+    price float [not null]
+    thumbnail varchar(255)
+}
+
+Table order_options {
+    order_option_id int [pk, increment]
+    order_id int [ref: > orders.order_id]
+    name varchar(255) [not null, note: "culery, ice, more toping ..."]
+    price float
+}
+
+Table bookings {
+    booking_id int [pk, increment]
+    order_id int [ref: - orders.order_id]
+    user_id int [ref: - users.user_id]
+    food_id int [ref: - food.food_id]
+    total_price int [not null]
+    created_at timestamp [default: `now()`]
+}
+
+Table booking_order_options {
+    booking_order_option_id int [pk, increment]
+    booking_id int [ref: > bookings.booking_id]
+    order_option_id int [ref: > order_options.order_option_id]
+}

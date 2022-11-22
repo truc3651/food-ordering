@@ -1,0 +1,7 @@
+type LoginOuput {
+  accessToken: String!
+}
+
+type Mutation {
+  login(email: String!, password: String!): LoginOuput!
+}
