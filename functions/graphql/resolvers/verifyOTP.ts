@@ -5,10 +5,9 @@ const resolver = {
     verifyOTP: async (
       _parent: any,
       args: { email: string; otp: string }
-    ): Promise<{ accessToken: string }> => {
+    ): Promise<boolean | null> => {
       const { email, otp } = args
-      const accessToken = await verifyOTP(email, otp)
-      return { accessToken }
+      return await verifyOTP(email, otp)
     }
   }
 }

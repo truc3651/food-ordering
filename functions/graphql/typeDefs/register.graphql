@@ -1,3 +1,9 @@
 type Mutation {
-  register(email: String!, password: String!, displayedName: String!, avatar: String): Boolean!
+  register(
+    email: String!
+    password: String!
+    displayedName: String!
+    avatar: String
+    sex: Boolean!
+  ): Boolean!
 }

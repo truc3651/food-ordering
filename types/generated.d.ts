@@ -5129,8 +5129,8 @@ interface Users {
   orders: Array<Orders>;
   /** An aggregate relationship */
   orders_aggregate: OrdersAggregate;
-  otp?: Maybe<Scalars['bpchar']>;
   password_hashed?: Maybe<Scalars['String']>;
+  request_forgot_password_at?: Maybe<Scalars['timestamp']>;
   /** An array relationship */
   rooms: Array<Rooms>;
   /** An aggregate relationship */
@@ -5304,8 +5304,8 @@ interface UsersBoolExp {
   momo_phone_number?: InputMaybe<BpcharComparisonExp>;
   orders?: InputMaybe<OrdersBoolExp>;
   orders_aggregate?: InputMaybe<OrdersAggregateBoolExp>;
-  otp?: InputMaybe<BpcharComparisonExp>;
   password_hashed?: InputMaybe<StringComparisonExp>;
+  request_forgot_password_at?: InputMaybe<TimestampComparisonExp>;
   rooms?: InputMaybe<RoomsBoolExp>;
   rooms_aggregate?: InputMaybe<RoomsAggregateBoolExp>;
   sex?: InputMaybe<BooleanComparisonExp>;
@@ -5347,8 +5347,8 @@ interface UsersInsertInput {
   forgot_password_token?: InputMaybe<Scalars['String']>;
   momo_phone_number?: InputMaybe<Scalars['bpchar']>;
   orders?: InputMaybe<OrdersArrRelInsertInput>;
-  otp?: InputMaybe<Scalars['bpchar']>;
   password_hashed?: InputMaybe<Scalars['String']>;
+  request_forgot_password_at?: InputMaybe<Scalars['timestamp']>;
   rooms?: InputMaybe<RoomsArrRelInsertInput>;
   sex?: InputMaybe<Scalars['Boolean']>;
   threads?: InputMaybe<ThreadsArrRelInsertInput>;
@@ -5368,8 +5368,8 @@ interface UsersMaxFields {
   email?: Maybe<Scalars['String']>;
   forgot_password_token?: Maybe<Scalars['String']>;
   momo_phone_number?: Maybe<Scalars['bpchar']>;
-  otp?: Maybe<Scalars['bpchar']>;
   password_hashed?: Maybe<Scalars['String']>;
+  request_forgot_password_at?: Maybe<Scalars['timestamp']>;
   updated_at?: Maybe<Scalars['timestamp']>;
   user_id?: Maybe<Scalars['Int']>;
 }
@@ -5384,8 +5384,8 @@ interface UsersMinFields {
   email?: Maybe<Scalars['String']>;
   forgot_password_token?: Maybe<Scalars['String']>;
   momo_phone_number?: Maybe<Scalars['bpchar']>;
-  otp?: Maybe<Scalars['bpchar']>;
   password_hashed?: Maybe<Scalars['String']>;
+  request_forgot_password_at?: Maybe<Scalars['timestamp']>;
   updated_at?: Maybe<Scalars['timestamp']>;
   user_id?: Maybe<Scalars['Int']>;
 }
@@ -5427,8 +5427,8 @@ interface UsersOrderBy {
   forgot_password_token?: InputMaybe<OrderBy>;
   momo_phone_number?: InputMaybe<OrderBy>;
   orders_aggregate?: InputMaybe<OrdersAggregateOrderBy>;
-  otp?: InputMaybe<OrderBy>;
   password_hashed?: InputMaybe<OrderBy>;
+  request_forgot_password_at?: InputMaybe<OrderBy>;
   rooms_aggregate?: InputMaybe<RoomsAggregateOrderBy>;
   sex?: InputMaybe<OrderBy>;
   threads_aggregate?: InputMaybe<ThreadsAggregateOrderBy>;
@@ -5819,9 +5819,9 @@ enum UsersSelectColumn {
   /** column name */
   MomoPhoneNumber = 'momo_phone_number',
   /** column name */
-  Otp = 'otp',
-  /** column name */
   PasswordHashed = 'password_hashed',
+  /** column name */
+  RequestForgotPasswordAt = 'request_forgot_password_at',
   /** column name */
   Sex = 'sex',
   /** column name */
@@ -5844,8 +5844,8 @@ interface UsersSetInput {
   email?: InputMaybe<Scalars['String']>;
   forgot_password_token?: InputMaybe<Scalars['String']>;
   momo_phone_number?: InputMaybe<Scalars['bpchar']>;
-  otp?: InputMaybe<Scalars['bpchar']>;
   password_hashed?: InputMaybe<Scalars['String']>;
+  request_forgot_password_at?: InputMaybe<Scalars['timestamp']>;
   sex?: InputMaybe<Scalars['Boolean']>;
   updated_at?: InputMaybe<Scalars['timestamp']>;
   user_id?: InputMaybe<Scalars['Int']>;
@@ -5890,8 +5890,8 @@ interface UsersStreamCursorValueInput {
   email?: InputMaybe<Scalars['String']>;
   forgot_password_token?: InputMaybe<Scalars['String']>;
   momo_phone_number?: InputMaybe<Scalars['bpchar']>;
-  otp?: InputMaybe<Scalars['bpchar']>;
   password_hashed?: InputMaybe<Scalars['String']>;
+  request_forgot_password_at?: InputMaybe<Scalars['timestamp']>;
   sex?: InputMaybe<Scalars['Boolean']>;
   updated_at?: InputMaybe<Scalars['timestamp']>;
   user_id?: InputMaybe<Scalars['Int']>;
@@ -5927,9 +5927,9 @@ enum UsersUpdateColumn {
   /** column name */
   MomoPhoneNumber = 'momo_phone_number',
   /** column name */
-  Otp = 'otp',
-  /** column name */
   PasswordHashed = 'password_hashed',
+  /** column name */
+  RequestForgotPasswordAt = 'request_forgot_password_at',
   /** column name */
   Sex = 'sex',
   /** column name */

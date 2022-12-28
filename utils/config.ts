@@ -5,5 +5,8 @@ export const ENV = {
   GOOGLE_AUTH_CLIENT_ID: process.env['GOOGLE_AUTH_CLIENT_ID'],
   GOOGLE_AUTH_SECRET: process.env['GOOGLE_AUTH_SECRET'],
   EMAIL_USER: process.env['EMAIL_USER'],
-  EMAIL_PASSWORD: process.env['EMAIL_PASSWORD']
-}
+  EMAIL_PASSWORD: process.env['EMAIL_PASSWORD'],
+  WEB_DOMAIN: {
+    RESET_PASSWORD: 'http://localhost:3000/reset-password'
+  }
+} as const

@@ -8,7 +8,7 @@ const resolver = {
         email: string
         password: string
       }
-    ): Promise<{ accessToken: string }> => {
+    ): Promise<{ accessToken: string | null }> => {
       const { email, password } = args
       const accessToken = await login(email, password)
       return { accessToken }

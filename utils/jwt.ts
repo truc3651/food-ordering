@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import jwt, { Algorithm } from 'jsonwebtoken'
 import publicKeyRS256 from 'keys/publicKey'
 import privateKeyRS256 from 'keys/privateKey'
 
@@ -11,8 +11,15 @@ export const verifyJWT = (
     algorithms
   })
 
-export const signJWT = (payload: Record<string, any>, privateKey = privateKeyRS256) =>
-  jwt.sign(payload, privateKey)
+export const signJWT = (
+  payload: Record<string, any>,
+  privateKey = privateKeyRS256,
+  algorithm: Algorithm = 'RS256'
+) =>
+  jwt.sign(payload, privateKey, {
+    expiresIn: '1d',
+    algorithm
+  })
 
 export const getBearerToken = ({ headers }: any) => {
   const Authorization: string = headers.Authorization || headers.authorization

@@ -1,5 +1,5 @@
 type LoginOuput {
-  accessToken: String!
+  accessToken: String
 }
 
 type Mutation {

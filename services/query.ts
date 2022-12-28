@@ -14,13 +14,12 @@ const requestServiceToken = async (): Promise<string> => {
     'admin': true,
     'https://hasura.io/jwt/claims': {
       'x-hasura-allowed-roles': ['admin'],
-      'x-hasura-default-role': 'admin',
-      'x-hasura-service-id': ENV.SERVICE_ID
+      'x-hasura-default-role': 'admin'
     }
   })
 }
 
-export const query = async <T, K = undefined>(query: string, variables?: K): Promise<T> => {
+export const query = async <T>(query: string, variables?: Record<string, any>): Promise<T> => {
   const token = await requestServiceToken()
   const resp: Response<T> = await request.post<T>(`${ENV.HASURA_ENDPOINT}/v1/graphql`, {
     json: {

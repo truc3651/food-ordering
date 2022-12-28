@@ -1,5 +1,5 @@
 type GenerateOTPOuput {
-  otp: String!
+  otp: String
 }
 
 type Mutation {

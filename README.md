@@ -2,3 +2,4 @@
 - sls deploy -f yourFunctionName
 - sls deploy --force
 - sls deploy --update-config
+- export AWS_PROFILE="dev_chinh_chu"

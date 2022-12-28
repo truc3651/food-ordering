@@ -9,14 +9,14 @@ Table users {
   password_hashed varchar(255) [note: "login via GG, no need password"]
   access_secret_key varchar(255) [note: "generate access_token based on this. When you forget your password, you need to delete me, sir!"]
   forgot_password_token varchar(255)
+  request_forgot_password_at timestamp
+  verified_email boolean
   displayed_name varchar(255) [not null]
   changed_displayed_name_manually boolean [note: "once user change me manually, the next time, they login via gg, pls do not replace displayed_name"]
   momo_phone_number char(10) [unique]
   avatar varchar(255)
   changed_avatar_manually boolean [note: "once user change me manually, the next time, they login via gg, pls do not replace avatar"]
   sex boolean [default: true, note: "true: Male, false: Female. Non-mofied allowing"]
-  active boolean [default: true, note: "admin ban user, or revoke request"]
-  verified_email boolean
   created_at timestamp [default: `now()`]
   updated_at timestamp [default: `now()`]
 }

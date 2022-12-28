@@ -1,6 +1,10 @@
-# package directories
 node_modules
-jspm_packages
-
-# Serverless directories
 .serverless
+.webpack
+.env
+.DS_Store
+.vscode
+.npmrc
+/.idea/
+coverage/
+*.key

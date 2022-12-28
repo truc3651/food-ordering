@@ -2,7 +2,7 @@ import generateOTP from 'services/account/generateOTP'
 
 const resolver = {
   Mutation: {
-    generateOTP: async (_parent: any, args: { email: string }): Promise<{ otp: string }> => {
+    generateOTP: async (_parent: any, args: { email: string }): Promise<{ otp: string | null }> => {
       const otpVerifiedEmail = await generateOTP(args.email)
       return { otp: otpVerifiedEmail }
     }
